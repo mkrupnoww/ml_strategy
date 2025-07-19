@@ -4,29 +4,9 @@ WITH target_and_stop AS (
         d.window_end,
         d.window_start_close,
         d.window_end_close,
-        d.window_low,
-        d.window_avg_atr,
-        d.trend_score,
-        d.window_length,
-        MIN(CASE 
-                WHEN b.high > d.window_end_close + 4 * d.window_avg_atr THEN b.date_d 
-            END) AS target_hit_date,
-        MIN(CASE 
-                WHEN b.low < d.window_low THEN b.date_d 
-            END) AS stop_hit_date
-    FROM ml.dataset d
-    JOIN ml.base_data b
-      ON b.ticker = d.ticker
-     AND b.date_d > d.window_end
-     AND b.date_d <= d.window_end + INTERVAL '14 days'
-     --WHERE b.date_d BETWEEN '2024-12-01' AND '2024-12-20'
-    GROUP BY d.ticker, d.window_end, d.window_start_close, d.window_end_close,
-             d.window_low, d.window_avg_atr, d.trend_score, d.window_length
-)
-SELECT
-    ticker,
-    window_end,
-    window_start_close,
+    
+   -- часть кода скрыто
+    
     window_end_close,
     window_low,
     window_avg_atr,
